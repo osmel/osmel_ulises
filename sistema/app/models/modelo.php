@@ -18,6 +18,11 @@
 
       $this->registros_obras    = $this->db->dbprefix('registros_obras');
 
+      //$this->registros_obras    = $this->db->dbprefix('registros_temporal');
+
+      
+
+
 		}
 
 

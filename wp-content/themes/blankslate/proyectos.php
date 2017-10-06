@@ -82,6 +82,7 @@ get_header(); ?>
 </div>
 
 
+
 <div class="container">
 	<h1><?php echo $cv ?></h1>
 
@@ -100,6 +101,7 @@ get_header(); ?>
 			});
         </script>
         <!--<iframe id="miFrame" src="http://manelperez.com/" width="100%" height="0" frameborder="1" transparency="transparency" onload="autofitIframe(this);"></iframe> -->
+
 
 </div>
 
