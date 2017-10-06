@@ -227,7 +227,7 @@ jQuery('#tabla_reportes_obras').dataTable( {
 		            {
 		                "render": function ( data, type, row ) {  //eliminar
 
-	   						texto='<td><a href="/eliminar_obra/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1])+'" '; 
+	   						texto='<td><a href="eliminar_obra/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1])+'" '; 
 								texto+='class="btn btn-danger  btn-block" data-toggle="modal" data-target="#modalMessage">';
 								texto+='<span class="glyphicon glyphicon-remove"></span>';
 							texto+='</a></td>';
@@ -314,7 +314,7 @@ jQuery('#tabla_reportes_obras').dataTable( {
 		            {
 		                "render": function ( data, type, row ) {  //eliminar
 
-	   						texto='<td><a href="/eliminar_estado/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1])+'" '; 
+	   						texto='<td><a href="eliminar_estado/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1])+'" '; 
 								texto+='class="btn btn-danger  btn-block" data-toggle="modal" data-target="#modalMessage">';
 								texto+='<span class="glyphicon glyphicon-remove"></span>';
 							texto+='</a></td>';
@@ -402,7 +402,7 @@ jQuery('#tabla_reportes_obras').dataTable( {
 		            {
 		                "render": function ( data, type, row ) {  //eliminar
 
-	   						texto='<td><a href="/eliminar_tipo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1])+'" '; 
+	   						texto='<td><a href="eliminar_tipo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1])+'" '; 
 								texto+='class="btn btn-danger  btn-block" data-toggle="modal" data-target="#modalMessage">';
 								texto+='<span class="glyphicon glyphicon-remove"></span>';
 							texto+='</a></td>';

@@ -55,7 +55,7 @@
 		<div class="row">
 			<div class="col-sm-4 col-md-4"></div>
 			<div class="col-sm-4 col-md-4">
-				<a href="<?php echo base_url(); ?><?php echo $retorno; ?>" type="button" class="btn btn-danger btn-block">Cancelar</a>
+				<a href="<?php echo base_url(); ?>tipos" type="button" class="btn btn-danger btn-block">Cancelar</a>
 			</div>
 			<div class="col-sm-4 col-md-4">
 				<input type="submit" class="btn btn-success btn-block" value="Guardar"/>
