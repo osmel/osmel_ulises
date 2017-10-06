@@ -81,186 +81,29 @@ get_header(); ?>
 	</div>
 </div>
 
-<iframe src="<?php echo get_site_url(); ?>/sistema/reporte_obras" style="width: 100%; min-heigth:500px;"></iframe>
-
 
 <div class="container">
-	<div class="row">
+	<h1><?php echo $cv ?></h1>
 
+	<iframe id="miFrame" src="<?php echo get_site_url(); ?>/sistema/reporte_obras" style="width: 100%; min-height:2px; overflow-y: hidden; border: none"></iframe>
 
+        <script language="JavaScript">
+            $(document).ready(function() {
+				//ajusta altura de iframe de formulario
+			   	function ajuste(){
+			       	var alt = $('iframe#miFrame').contents().height();		    	
+			  		$("iframe#miFrame").height(alt);
+				}	    	    
+			   
 
+			    setInterval(ajuste, 100);
+					    	
+			});
+        </script>
+        <!--<iframe id="miFrame" src="http://manelperez.com/" width="100%" height="0" frameborder="1" transparency="transparency" onload="autofitIframe(this);"></iframe> -->
 
-
-
-		<h1><?php echo $cv ?></h1>
-		
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <?php
-                $npost = '246'; //id de página Proyectos
-                $obra = simple_fields_fieldgroup("obras", $npost);    //osmel
-                //print_r($obra) ;die;
-
-                
-                $estados = array();
-                $anos = array();
-                $n=0;
-                foreach ($obra as $key => $value) {
-                    $estados[] = $obra[$n]['estado']['selected_value'];
-                    $anos[] = $obra[$n]['ano'];
-                    $n++;
-                }
-                // elimina estados repetidos dentro del array y los ordena en orden alfabético
-                $resEstados = array_unique($estados);
-                $estadosOrd = array_values($resEstados);
-                sort($estadosOrd);
-                // elimina años repetidos dentro del array y los ordena desde el más reciente
-                $resAnos = array_unique($anos);
-                $anosOrd = array_values($resAnos);
-                rsort($anosOrd);                
-            ?>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="row curriculum">
-                        <form id="obras">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <select name="estado" class="form-control estado">
-                                    <option><?php echo $estado ?></option>
-                                    <option><?php echo $todos ?></option>
-                                    <?php
-                                    $a=0;
-                                    foreach ($estadosOrd as $key => $value) {
-                                        echo '<option>'.$estadosOrd[$a].'</option>';
-                                        $a++;
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <select name="tipo" class="form-control tipo">
-                                    <option><?php echo $tipo ?></option>
-                                    <option id="comercial"><?php echo $comercial ?></option>
-                                    <option id="industrial"><?php echo $industrial ?></option>
-                                    <option id="institucional"><?php echo $institucional ?></option>
-                                </select>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="submit" value="<?php echo $obras ?>" class="form-control" style="margin:5px 0; border-radius:0">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-		<script type="text/javascript"> 
-			var obras = <?php echo json_encode($obra) ?>; //ok
-			
-		</script> 
-		
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            
-            
-        
-		<div class="table-responsive">
-            <table class="table table-hover tabla-obras">
-
-            	<?php
-            		if (isset($_GET["lang"]) & $_GET["lang"] == "en") {
-            			$pie = 1;
-            			$medida = 'ft<sup>2</sup>';
-            			
-						
-				?>	
-					<thead>
-		                    <tr>
-		                        <th>Work</th>
-		                        <th>Place</th>
-		                        <th>Year</th>
-		                        <th>Area</th>                           
-		                        <th>Type</th>
-		                    </tr>
-		                </thead>
-
-				<?php 		
-					}else{
-						$pie = 10.7639;
-						$medida = 'm<sup>2</sup>';
-				?>
-						<thead>
-		                    <tr>
-		                        <th>Obra</th>
-		                        <th>Lugar</th>
-		                        <th>Año</th>
-		                        <th>Área</th> 
-		                        <th>Tipo</th>                           
-		                    </tr>
-		                </thead>
-				<?php
-					}
-            	?>
-                
-					
-				<tbody id="datos" class="datos">
-					<script type="text/javascript">
-					var pie = parseFloat(<?php echo $pie; ?>);
-					var medida = <?php echo json_encode($medida) ?>;
-					// alert(pie);
-					function round(value, exp) {
-					  if (typeof exp === 'undefined' || +exp === 0)
-					    return Math.round(value);
-
-					  value = +value;
-					  exp = +exp;
-
-					  if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0))
-					    return NaN;
-
-					  // Shift
-					  value = value.toString().split('e');
-					  value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp)));
-
-					  // Shift back
-					  value = value.toString().split('e');
-					  return +(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp));
-					}
-					function formatearNumero(nStr) {
-					    nStr += '';
-					    x = nStr.split('.');
-					    x1 = x[0];
-					    x2 = x.length > 1 ? '.' + x[1] : '';
-					    var rgx = /(\d+)(\d{3})/;
-					    while (rgx.test(x1)) {
-					            x1 = x1.replace(rgx, '$1' + ', ' + '$2');
-					    }
-					    return x1 + x2;
-}
-
-					for(var i=0;i<obras.length;i++){
-						valor = obras[i]['area'];
-						valor = valor.replace(/[qwertyuiopñlkjhgfdsamnbvcxzQWERTYUIOPÑLKJHGFDSAMNBVCXZáéíóúÁÉÍÓÚ,;:-<>!¡?¿ +_*$%&]/g, "");
-						if(isNaN(valor) || valor == "" || valor == undefined){
-							mimedida = 0;	
-						}else{
-							mimedida = parseFloat(valor)/pie;
-							mimedida = round(mimedida, 0);
-							mimedida = formatearNumero(mimedida);
-						}
-						// console.log(valor);
-				        document.getElementById('datos').innerHTML += "<tr><td>"+obras[i]['obra']+"</td><td>"+obras[i]['lugar']+", "+obras[i]['estado']['selected_value']+"</td><td>"+obras[i]['ano']+"</td><td>"+mimedida+" "+medida+"</td><td>"+obras[i]['tipo']['selected_value']+"</td></tr>";
-				        if (i == 9) {
-				        	break;
-				        };
-				    }
-					</script>
-				</tbody>
-            
-            </table>                
-        </div>
-		
-
-		</div>
-		
-	</div>
 </div>
+
 
 <div class="container">
 	<div class="row">

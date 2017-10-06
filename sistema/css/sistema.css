@@ -115,6 +115,7 @@ input.buscar_cargador.form-control.typeahead.tt-query.tt-input{
 	width: 100%;
   height: auto;
 }
+
 .container.blanco  .table-responsive{
 	overflow-x: hidden !important;
 }
@@ -449,6 +450,10 @@ margin: 50px;
 }
 .table>tbody>tr>td{
 	padding: 2px !important;
+}
+#tabla_reportes_obras tbody td {
+	padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 form > .container{
 	background-color: #ffffff;

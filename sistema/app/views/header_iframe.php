@@ -13,9 +13,9 @@
 <body>
 	<div class="container-fluid">
 		<div id="foo"></div>
-		<header class="row">
+		<header class="row" style="height: 0px !important; padding: 0px !important; background: transparent !important; background-color: transparent !important;">
 			<div class="banner">
-			<div class="barra-verde"></div>
+			
 		</header>
-		<div class="row-fluid" id="wrapper">
+		<div class="row-fluid" id="wrapper" style="margin: 0 !important">
 			<div class="alert" id="messages"></div>
