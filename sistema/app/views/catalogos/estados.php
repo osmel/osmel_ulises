@@ -7,6 +7,14 @@
     }
 ?>    
 
+	<div class="container" style="background-color: transparent;">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<h2>ESTADOS</h2>
+			</div>
+		</div>
+	</div>
+
 	<div class="container">
 		<br>
 		<div class="row">
@@ -59,6 +67,7 @@
 			<div class="col-md-3">
 				<a href="<?php echo base_url(); ?><?php echo $retorno; ?>" class="btn btn-danger btn-block"><i class="glyphicon glyphicon-backward"></i> Regresar</a>
 			</div>
+			<br><br><br>
 		</div>
 	</div>
 <?php $this->load->view('footer'); ?>

@@ -11,7 +11,7 @@
 <div class="container">
 		<br>	
 	<div class="row">
-		<div class="col-sm-8 col-md-8"><h4>Nueva Estado</h4></div>
+		<div class="col-sm-8 col-md-8"><h2>NUEVO ESTADO</h2></div>
 	</div>
 	<br>
 	<div class="container row">
@@ -20,10 +20,10 @@
 			
 			<div class="panel-body">
 
-				<div class="col-sm-6 col-md-6">
+				<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 					<div class="form-group">
 						<label for="nombre" class="col-sm-12 col-md-12">Estado</label>
-						<div class="col-sm-9 col-md-10">
+						<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 							<input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre">
 						</div>
 					</div>
