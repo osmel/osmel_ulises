@@ -81,24 +81,15 @@ get_header(); ?>
 	</div>
 </div>
 
-<iframe src="<?php echo get_site_url(); ?>/sistema/reporte_obras" style="width: 100%; min-heigth:500px;"></iframe>
-
-
 <div class="container">
 	<div class="row">
-
-
-
-
-
-
 		<h1><?php echo $cv ?></h1>
 		
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <?php
                 $npost = '246'; //id de página Proyectos
                 $obra = simple_fields_fieldgroup("obras", $npost);    //osmel
-                //print_r($obra) ;die;
+                print_r($obra) ;die;
 
                 
                 $estados = array();

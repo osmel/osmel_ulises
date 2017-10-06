@@ -72,7 +72,7 @@ $route['eliminar_tipo/(:any)/(:any)'] = 'main/eliminar_tipo/$1/$2';
 $route['validar_eliminar_tipo']    	 = 'main/validar_eliminar_tipo';
 
 
-//obras de obras
+//catalago de obras
 $route['obras']					     = 'main/listado_obras';
 $route['procesando_cat_obras']    = 'main/procesando_cat_obras';
 
@@ -84,6 +84,11 @@ $route['validacion_edicion_obra']     = 'main/validacion_edicion_obra';
 
 $route['eliminar_obra/(:any)/(:any)'] = 'main/eliminar_obra/$1/$2';
 $route['validar_eliminar_obra']    	 = 'main/validar_eliminar_obra';
+
+
+//reportes de obras
+$route['reporte_obras']					     = 'main/reporte_obras';
+$route['procesando_reportes_obras']    = 'main/procesando_reportes_obras';
 
 
 
