@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'root';
+$db['default']['password'] = 'contrasena';
 $db['default']['database'] = 'copachisa';
 /*$db['default']['database'] = 'iniciativatextilalmacen';*/
 $db['default']['dbdriver'] = 'mysql';

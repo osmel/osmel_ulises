@@ -2,11 +2,14 @@
 		</div>
 
 	</div>
-		<footer  style="background-color:#337ab7;"  class="container-fluid navbar-bottom footer">
+		
+	<div class="row">
+		<footer  style="background-color:#000;"  class="container-fluid navbar-bottom footer">
 			<div class="container">
-					<br/>
-
-					footer
+				<p>
+					<a href="http://www.copachisa.com/" target="_self">copachisa.com</a>
+				</p>
+					
 					<!--
 					<div style="margin-top:10px">
                         <span style="color:#ffffff;">Sitio desarrollado por: 
@@ -19,6 +22,7 @@
 			</div>
 
 		</footer>
+	</div>
 
 	<!-- SCRIPTS -->
 	<?php  echo link_tag('css/fontello.css');  ?>

@@ -11,7 +11,7 @@
 <div class="container">
 		<br>	
 	<div class="row">
-		<div class="col-sm-8 col-md-8"><h4>Nueva obra</h4></div>
+		<div class="col-sm-8 col-md-8"><h2>NUEVA OBRA</h2></div>
 	</div>
 	<br>
 	<div class="container row">
@@ -25,7 +25,7 @@
 				<div class="col-sm-6 col-md-6">
 					<div class="form-group">
 						<label for="obra" class="col-sm-12 col-md-12">Obra</label>
-						<div class="col-sm-9 col-md-10">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type="text" class="form-control" id="obra" name="obra" placeholder="obra">
 						</div>
 					</div>
@@ -46,7 +46,7 @@
 
 					<div class="form-group">
 						<label for="lugar" class="col-sm-12 col-md-12">Lugar</label>
-						<div class="col-sm-9 col-md-10">
+						<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 							<input type="text" class="form-control" id="lugar" name="lugar" placeholder="lugar">
 						</div>
 					</div>
@@ -60,14 +60,14 @@
 
 					<div class="form-group">
 						<label for="ano" class="col-sm-12 col-md-12">Año</label>
-						<div class="col-sm-9 col-md-10">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type="text" class="form-control" id="ano" name="ano" placeholder="ano">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="monto" class="col-sm-12 col-md-12">Área SF</label>
-						<div class="col-sm-9 col-md-10">
+						<div class="col-lg-12 col-sm-9 col-md-10 col-xs-12" >
 							<input type="text" class="form-control" id="monto" name="monto" placeholder="monto">
 						</div>
 					</div>
