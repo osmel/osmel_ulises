@@ -1,5 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php $this->load->view('header'); ?>
+ 
+<?php 
+
+
+$this->load->view('header'); ?>
 
 <?php
  	if (!isset($retorno)) {
@@ -67,7 +71,10 @@
 			</div>
 		</div>
 	</div>
-<?php $this->load->view('footer'); ?>
+<?php $this->load->view('footer'); 
+
+
+?>
 <div class="modal fade bs-example-modal-lg" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
         <div class="modal-content"></div>

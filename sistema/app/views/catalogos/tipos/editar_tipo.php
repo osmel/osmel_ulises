@@ -4,7 +4,7 @@
 <?php 
 
  	if (!isset($retorno)) {
-      	$retorno ="tipos";
+      	$retorno ="sistema/tipos";
     }
 
   $hidden = array('id'=>$id);

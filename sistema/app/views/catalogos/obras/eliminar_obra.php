@@ -2,7 +2,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/sistema.js"></script>
 <?php
  	if (!isset($retorno)) {
-      	$retorno ="obras";
+      	$retorno ="sistema/obras";
     }
  $hidden = array('id'=>$id); ?>
 <?php echo form_open('validar_eliminar_obra', array('class' => 'form-horizontal','id'=>'form_catalogos','name'=>$retorno, 'method' => 'POST', 'role' => 'form', 'autocomplete' => 'off' ) ,   $hidden ); ?>

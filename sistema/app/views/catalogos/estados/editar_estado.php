@@ -4,7 +4,7 @@
 <?php 
 
  	if (!isset($retorno)) {
-      	$retorno ="estados";
+      	$retorno ="sistema/estados";
     }
 
   $hidden = array('id'=>$id);

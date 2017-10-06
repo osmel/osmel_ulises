@@ -3,7 +3,7 @@
 <?php $this->load->view('header'); ?>
 <?php 
  	if (!isset($retorno)) {
-      	$retorno ="tipos";
+      	$retorno ="sistema/tipos";
     }
  $attr = array('class' => 'form-horizontal', 'id'=>'form_catalogos','name'=>$retorno,'method'=>'POST','autocomplete'=>'off','role'=>'form');
  echo form_open('validar_nuevo_tipo', $attr);
