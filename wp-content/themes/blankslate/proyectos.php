@@ -93,9 +93,8 @@ get_header(); ?>
 			   	function ajuste(){
 			       	var alt = $('iframe#miFrame').contents().height();		    	
 			  		$("iframe#miFrame").height(alt);
-				}	    	    
-			   
-
+				}
+				
 			    setInterval(ajuste, 100);
 					    	
 			});
