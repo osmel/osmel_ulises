@@ -71,6 +71,8 @@ get_header(); ?>
 	</div>
 </div>
 
+<iframe src="<?php echo get_site_url(); ?>/sistema/reporte_obras" style="width: 100%; min-heigth:500px;"></iframe>
+
 <div class="container-fluid" style="background-color:#000">
 	<div class="container row-proyectos">
 		<div class="row">
@@ -81,18 +83,48 @@ get_header(); ?>
 	</div>
 </div>
 
+<!--
 <iframe src="<?php echo get_site_url(); ?>/sistema/reporte_obras" style="width: 100%; min-heigth:500px;"></iframe>
+-->
+
 
 <div class="container">
 	<div class="row">
+
+
+
+
+
+
 		<h1><?php echo $cv ?></h1>
 		
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <?php
                 $npost = '246'; //id de página Proyectos
                 $obra = simple_fields_fieldgroup("obras", $npost);    //osmel
-                //print_r($obra) ;die;
+                
+                /*
+                echo '<pre>';
+                  print_r($obra) ;
+                echo '</pre>';  
+                 die;
+                 */
 
+
+                	foreach ($obra as $key => $value) {
+                            echo $key.'|'.$obra[$key]['obra'];
+                            echo '|'.$obra[$key]['estado']['selected_value'];
+                            echo '|'.$obra[$key]['lugar'];
+                            echo '|'.$obra[$key]['ano'];
+                            echo '|'.$obra[$key]['area'];
+                            echo '|'.$obra[$key]['tipo']['selected_value'];
+
+                            //print_r( $obra[$key]['lugar']);
+                            echo '<br/>';
+                                 
+                     }
+                     die;
+                
                 
                 $estados = array();
                 $anos = array();
@@ -101,7 +133,14 @@ get_header(); ?>
                     $estados[] = $obra[$n]['estado']['selected_value'];
                     $anos[] = $obra[$n]['ano'];
                     $n++;
+                
                 }
+
+                //print_r($estados) ;die;
+
+				
+
+
                 // elimina estados repetidos dentro del array y los ordena en orden alfabético
                 $resEstados = array_unique($estados);
                 $estadosOrd = array_values($resEstados);

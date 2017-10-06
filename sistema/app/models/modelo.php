@@ -16,7 +16,12 @@
 
       $this->catalogos_tipos    = $this->db->dbprefix('catalogo_tipo_obra');
 
-      $this->registros_obras    = $this->db->dbprefix('registros_obras');
+      //$this->registros_obras    = $this->db->dbprefix('registros_obras');
+
+      $this->registros_obras    = $this->db->dbprefix('registros_temporal');
+
+      
+
 
 		}
 
