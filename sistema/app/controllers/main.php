@@ -24,6 +24,7 @@ class Main extends CI_Controller {
 ////////////////reportes_obras//////////////////////
  public function reporte_obras(){
 
+
     $data['estados'] = $this->modelo->listado_estados();
     $data['tipos'] = $this->modelo->listado_tipos();
 
@@ -51,7 +52,18 @@ class Main extends CI_Controller {
 ////////////////obras//////////////////////
  public function listado_obras(){
  
-   $this->load->view( 'catalogos/obras');
+    if (is_user_logged_in()){
+          $cu = wp_get_current_user();
+          if ($cu->ID==1) {
+              $this->load->view( 'catalogos/obras');
+          } else {
+             redirect(get_site_url());
+          }
+          
+    
+    } else {
+         redirect(get_site_url());
+    }
     
 }
 
@@ -170,8 +182,19 @@ function validacion_edicion_obra(){
 
 ////////////////estados//////////////////////
  public function listado_estados(){
-  
-   $this->load->view( 'catalogos/estados');
+
+    if (is_user_logged_in()){
+          $cu = wp_get_current_user();
+          if ($cu->ID==1) {
+              $this->load->view( 'catalogos/estados');
+          } else {
+             redirect(get_site_url());
+          }
+          
+    
+    } else {
+         redirect(get_site_url());
+    }   
     
 }
 
@@ -271,7 +294,21 @@ function validacion_edicion_estado(){
 ////////////////tipos//////////////////////
  public function listado_tipos(){
   
-   $this->load->view( 'catalogos/tipos');
+   //$this->load->view( 'catalogos/tipos');
+
+    if (is_user_logged_in()){
+          $cu = wp_get_current_user();
+          if ($cu->ID==1) {
+              $this->load->view( 'catalogos/tipos');
+          } else {
+             redirect(get_site_url());
+          }
+          
+    
+    } else {
+         redirect(get_site_url());
+    }   
+  
     
 }
 

@@ -60,15 +60,7 @@
 			</div>
 		</div>
 	</div>
-		<br>
-		<div class="row">
-
-			<div class="col-md-9"></div>
-			<div class="col-md-3">
-				<a href="<?php echo base_url(); ?><?php echo $retorno; ?>" class="btn btn-danger btn-block"><i class="glyphicon glyphicon-backward"></i> Regresar</a>
-			</div>
-			<br><br><br>
-		</div>
+		
 	</div>
 <?php $this->load->view('footer'); ?>
 <div class="modal fade bs-example-modal-lg" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
