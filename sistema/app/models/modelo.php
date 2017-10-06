@@ -21,6 +21,161 @@
 		}
 
 
+//listado de la regilla
+public function buscador_reporte_obras($data){
+
+
+          $cadena = addslashes($data['search']['value']);
+          $inicio = $data['start'];
+          $largo = $data['length'];
+          
+
+          $columa_order = $data['order'][0]['column'];
+                 $order = $data['order'][0]['dir'];
+
+           if ($data['draw'] ==1) { //que se ordene por el ultimo
+                 $columa_order ='-1';
+                 $order = 'desc';
+           } 
+
+
+
+          switch ($columa_order) {
+                   case '0':
+                        $columna = 'r.obra';
+                     break;
+                  case '1':
+                        $columna = 'r.lugar'; //, e.nombre
+                     break;                     
+
+                  case '2':
+                        $columna = 'r.ano';
+                     break;                     
+
+                  case '3':
+                        $columna = 'r.monto';
+                     break;                     
+
+                  case '4':
+                        $columna = 't.nombre';
+                     break;                     
+
+
+                   default:
+                        $columna = 'r.id';
+                     break;
+                 }                 
+
+                         
+
+
+          $id_session = $this->db->escape($this->session->userdata('id'));
+
+          $this->db->select("SQL_CALC_FOUND_ROWS *", FALSE); //
+          
+          //id, obra, id_estado, lugar, ano, monto, id_tipo, fecha_mac
+          $this->db->select('r.id'); //, r.nombre
+          $this->db->select('r.obra,r.lugar, r.ano, r.monto ');
+          $this->db->select('e.nombre estado');
+          $this->db->select('t.nombre tipo');
+
+          $this->db->from($this->registros_obras.' as r');
+          $this->db->join($this->catalogos_estados.' As e' , 'e.id = r.id_estado','LEFT');
+          $this->db->join($this->catalogos_tipos.' As t' , 't.id = r.id_tipo','LEFT');
+          
+          //filtro de busqueda
+       
+
+
+          if ($data['id_estado']!=0) {
+             $id_estadoid = ' ( r.id_estado =  '.$data['id_estado'].' ) and ';  
+          } else {
+             $id_estadoid = '';
+          }    
+
+
+          if ($data['id_tipo']!=0) {
+             $id_tipoid = '  ( r.id_tipo =  '.$data['id_tipo'].' )  and';  
+          } else {
+             $id_tipoid = '';
+          }    
+
+
+          $where = '('.$id_estadoid.$id_tipoid.'
+
+                       ( 
+                         ( r.obra LIKE  "%'.$cadena.'%" ) OR 
+                         ( r.lugar LIKE  "%'.$cadena.'%" ) OR 
+                         ( r.ano LIKE  "%'.$cadena.'%" ) OR 
+                         ( r.monto LIKE  "%'.$cadena.'%" ) OR 
+                         ( e.nombre LIKE  "%'.$cadena.'%" ) OR 
+                         ( t.nombre LIKE  "%'.$cadena.'%" )  
+                        )
+            )';   
+
+
+  
+          $this->db->where($where);
+    
+          //ordenacion
+          $this->db->order_by($columna, $order); 
+
+          //paginacion
+          $this->db->limit($largo,$inicio); 
+
+
+          $result = $this->db->get();
+
+              if ( $result->num_rows() > 0 ) {
+
+                    $cantidad_consulta = $this->db->query("SELECT FOUND_ROWS() as cantidad");
+                    $found_rows = $cantidad_consulta->row(); 
+                    $registros_filtrados =  ( (int) $found_rows->cantidad);
+
+                  $retorno= " ";  
+                  foreach ($result->result() as $row) {
+                               $dato[]= array(
+                                      0=>$row->id,
+                                      1=>$row->obra,
+                                      2=>$row->estado,
+                                      3=>$row->lugar,
+                                      4=>$row->ano,
+                                      5=>$row->monto,
+                                      6=>$row->tipo,
+                                      
+                                    );
+                      }
+
+
+
+
+                      return json_encode ( array(
+                        "draw"            => intval( $data['draw'] ),
+                        "recordsTotal"    => $registros_filtrados, 
+                        "recordsFiltered" =>   $registros_filtrados, 
+                        "data"            =>  $dato 
+                      ));
+                    
+              }   
+              else {
+                  
+                  $output = array(
+                  "draw" =>  intval( $data['draw'] ),
+                  "recordsTotal" => 0,
+                  "recordsFiltered" =>0,
+                  "aaData" => array()
+                  );
+                  $array[]="";
+                  return json_encode($output);
+                  
+
+              }
+
+              $result->free_result();           
+
+      } 
+
+
  //obras
   public function get_obra( $data ){
 

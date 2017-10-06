@@ -21,6 +21,107 @@ jQuery(document).ready(function($) {
 
 var target = document.getElementById('foo');
 
+
+
+jQuery("#id_estado_reporte,  #id_tipo_reporte").on('change', function(e) {	
+	var oTable =jQuery('#tabla_reportes_obras').dataTable();
+	oTable._fnAjaxUpdate();
+});
+
+
+
+jQuery('#tabla_reportes_obras').dataTable( {
+	
+	  "pagingType": "full_numbers",
+		
+		"processing": true,
+		"serverSide": true,
+		"ajax": {
+	            	"url" : "procesando_reportes_obras",
+	         		"type": "POST",
+
+ 					"data": function ( d ) {
+							d.id_estado = jQuery('#id_estado_reporte').val();  
+							d.id_tipo = jQuery('#id_tipo_reporte').val();  
+	    			 }	         		
+	         		
+	     },   
+
+		"language": {  //tratamiento de lenguaje
+			"lengthMenu": "Mostrar _MENU_ registros por página",
+			"zeroRecords": "No hay registros",
+			"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+			"infoEmpty": "No hay registros disponibles",
+			"infoFiltered": "(Mostrando _TOTAL_ de _MAX_ registros totales)",  
+			"emptyTable":     "No hay registros",
+			"infoPostFix":    "",
+			"thousands":      ",",
+			"loadingRecords": "Leyendo...",
+			"processing":     "Procesando...",
+			"search":         "Buscar:",
+			"paginate": {
+				"first":      "Primero",
+				"last":       "Último",
+				"next":       "Siguiente",
+				"previous":   "Anterior"
+			},
+			"aria": {
+				"sortAscending":  ": Activando para ordenar columnas ascendentes",
+				"sortDescending": ": Activando para ordenar columnas descendentes"
+			},
+		},
+
+
+		"columnDefs": [
+			    	
+			    	{ 
+		                "render": function ( data, type, row ) {
+		                		return row[1];
+		                },
+		                "targets": [0] //obra
+		            },
+
+			    	{ 
+		                "render": function ( data, type, row ) {
+		                		return row[3]+', '+row[2];
+		                },
+		                "targets": [1] //lugar, estado
+		            },
+
+
+
+			    	{ 
+		                "render": function ( data, type, row ) {
+		                		return row[4];
+		                },
+		                "targets": [2] //ano
+		            },
+
+
+			    	{ 
+		                "render": function ( data, type, row ) {
+		                		return row[5];
+		                },
+		                "targets": [3] //area=monto
+		            },
+
+			    	{ 
+		                "render": function ( data, type, row ) {
+		                		return row[6];
+		                },
+		                "targets": [4] //tipo
+		            },
+
+
+
+	            
+		           
+		            
+		        ],
+	});		
+
+
+
 	jQuery('#tabla_cat_obras').dataTable( {
 	
 	  "pagingType": "full_numbers",

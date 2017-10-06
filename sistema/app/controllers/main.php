@@ -20,6 +20,34 @@ class Main extends CI_Controller {
 
 
 
+
+////////////////reportes_obras//////////////////////
+ public function reporte_obras(){
+
+    $data['estados'] = $this->modelo->listado_estados();
+    $data['tipos'] = $this->modelo->listado_tipos();
+
+ 
+   $this->load->view( 'catalogos/reporte_obras', $data);
+    
+}
+
+
+  public function procesando_reportes_obras(){
+    $data=$_POST;
+    $busqueda = $this->modelo->buscador_reporte_obras($data);
+    echo $busqueda;
+  } 
+
+
+
+
+
+
+
+
+
+
 ////////////////obras//////////////////////
  public function listado_obras(){
  
