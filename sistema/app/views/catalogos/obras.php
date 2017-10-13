@@ -25,6 +25,10 @@ $this->load->view('header'); ?>
 			<div class="col-md-3">
 				<a href="<?php echo base_url(); ?>nuevo_obra" type="button" class="btn btn-success btn-block">Nueva obra</a>
 			</div>
+			<div class="col-sm-4 col-md-6"></div>
+			<div class="col-sm-4 col-md-3">
+				<a href="<?php echo get_site_url(); ?>/wp-admin" type="button" class="btn btn-danger btn-block">Regresar</a>
+			</div>
 		</div>
 		<br>
 		<div class="container row">
@@ -46,6 +50,7 @@ $this->load->view('header'); ?>
 							<table id="tabla_cat_obras" class="display table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
 								<thead>
 									<tr>
+										
 										<th class="text-center" width="15%">Obra</th>
 										<th class="text-center" width="15%">Estado</th>
 										<th class="text-center" width="15%">Lugar</th>

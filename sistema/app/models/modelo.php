@@ -240,6 +240,21 @@ public function buscador_reporte_obras($data){
   }   
 
 
+  public function actualizar_celda( $data ){
+    //return $data['campo'];
+
+      $this->db->set( $data['campo'], $data['valor'] );  
+      $this->db->where('id', $data['id'] );
+      $this->db->update($this->registros_obras );
+          if ($this->db->affected_rows() > 0) {
+              return TRUE;
+          }  else
+               return FALSE;
+              $result->free_result();
+  } 
+
+
+
         //eliminar obra
         public function delete_obra( $data ){
             $this->db->delete( $this->registros_obras, array( 'id' => $data['id'] ) );
@@ -296,24 +311,43 @@ public function buscador_cat_obras($data){
           $columa_order = $data['order'][0]['column'];
                  $order = $data['order'][0]['dir'];
 
+
            if ($data['draw'] ==1) { //que se ordene por el ultimo
                  $columa_order ='-1';
                  $order = 'desc';
-           } 
-
-
+           }                  
 
           switch ($columa_order) {
                    case '0':
                         $columna = 'r.obra';
                      break;
 
+                   case '1':
+                        $columna = 'e.nombre'; //estado
+                     break;
+
+                   case '2':
+                        $columna = 'r.lugar';
+                     break;
+
+                   case '3':
+                        $columna = 'r.ano';
+                     break;
+
+                   case '4':
+                        $columna = 'r.monto';
+                     break;
+
+                   case '5':
+                        $columna = 't.nombre'; //tipo
+                     break;
+
                    default:
-                        $columna = 'r.id';
+                        $columna = 'r.fecha_mac';
+                        $order ='DESC';
                      break;
                  }                 
 
-                                      
 
           $id_session = $this->db->escape($this->session->userdata('id'));
 

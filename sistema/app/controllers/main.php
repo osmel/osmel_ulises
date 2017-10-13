@@ -20,6 +20,19 @@ class Main extends CI_Controller {
 
 
 
+ public function cargar_selector() {
+
+
+      $elementos['1']        = $this->modelo->listado_estados();
+      $elementos['5']     = $this->modelo->listado_tipos();
+      
+
+    echo json_encode($elementos); 
+
+
+  }
+  
+
 
 ////////////////reportes_obras//////////////////////
  public function reporte_obras(){
@@ -82,6 +95,60 @@ class Main extends CI_Controller {
          $this->load->view( 'catalogos/obras/nuevo_obra',$data);
                 
   }
+
+
+  
+function actualizar_celda(){
+     $columna =  (string)$this->input->post('campo').'';
+
+   switch ($columna) {
+                   case '0':
+                        $data['campo'] = 'obra';
+                     break;
+
+                   case '1':
+                        $data['campo']= 'id_estado'; //estado
+                     break;
+
+                   case '2':
+                        $data['campo']= 'lugar';
+                        
+                     break;
+
+                   case '3':
+                        $data['campo']= 'ano';
+                     break;
+
+                   case '4':
+                        $data['campo']= 'monto';
+                     break;
+
+                   case '5':
+                        $data['campo']= 'id_tipo'; //tipo
+                     break;
+
+                   default:
+                        $data['campo'] = 'obra';
+                     break;
+                 }      
+
+
+   $data['valor']   = $this->input->post('valor');
+   $data['id']   =   base64_decode($this->input->post('id'));
+
+    $data         =   $this->security->xss_clean($data);  
+    $guardar            = $this->modelo->actualizar_celda( $data );
+
+//    echo $guardar;
+
+        
+        if ( $guardar !== FALSE ){
+          echo true;
+        } else {
+          echo '<span class="error"><b>E01</b> - El nuevo valor no pudo cambiarse</span>';
+        } 
+
+} 
 
   function validar_nuevo_obra(){
       $this->form_validation->set_rules('obra', 'obra', 'trim|required|min_length[3]|max_lenght[180]|xss_clean');

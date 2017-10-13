@@ -77,20 +77,33 @@
 																			
 
 	<!--para conversion a base64.encode y base64.decode -->
-	<script src="<?php echo base_url(); ?>js/base64/jquery.base64.js" type="text/javascript"></script>
-	<script src="<?php echo base_url(); ?>js/base64/jquery.base64.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>js/base64/jquery.base64_actualizado.js" type="text/javascript"></script>
+	<!--<script src="<?php echo base_url(); ?>js/base64/jquery.base64.min.js" type="text/javascript"></script> -->
 	
 
     
 	
-	<!--datatables para el caso de salidas -->
-	
+	<!--datatables para el caso de salidas 
+
+
+
+	<script type="text/javascript" language="javascript" src="<?php echo base_url(); ?>js/media/js/dataTables.editor.min.js"></script>
+
+	<script type="text/javascript" language="javascript" src="<?php echo base_url(); ?>js/media/js/editor.bootstrap.min.js"></script>
+
+	-->
+
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/media/css/jquery.dataTables.css">
 	
 	<script type="text/javascript" language="javascript" src="<?php echo base_url(); ?>js/media/js/jquery.dataTables.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/extensions/TableTools/css/dataTables.tableTools.css">
 	<script type="text/javascript" language="javascript" src="<?php echo base_url(); ?>js/extensions/TableTools/js/dataTables.tableTools.js"></script>
+
+
+	
+	<!--editar online -->
+	<script type="text/javascript" language="javascript" src="<?php echo base_url(); ?>js/media/js/dataTables.editor.js"></script>
 	
 	
 	<!--js personalizado

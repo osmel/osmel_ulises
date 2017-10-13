@@ -15,7 +15,7 @@
   Colocamos la url o dominio
 */
 /*$config['base_url']	='http://www.almacen-it.com/'; // 'http://45.55.85.45'; */
-$config['base_url']	='http://inventarios.dev.com/sistema/'; // 'http://45.55.85.45';  
+$config['base_url']	='http://copachisa.dev.com/sistema/'; // 'http://45.55.85.45';  
 
 /*
 |--------------------------------------------------------------------------
@@ -282,7 +282,7 @@ ejem: 123456789/*-@-., (puedes poner la combinaciones de caracteres)
 
 */
 
-$config['encryption_key'] = $_SERVER['ENCRYPT_KEY']; //'';
+$config['encryption_key'] = 'eTkFHqausC34vmldkSrLkMwX13kqpDg1CYOd'; //$_SERVER['ENCRYPT_KEY']; //'';
 
 /*
 |--------------------------------------------------------------------------

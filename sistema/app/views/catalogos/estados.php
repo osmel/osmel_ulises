@@ -21,6 +21,11 @@
 			<div class="col-md-3">
 				<a href="<?php echo base_url(); ?>nuevo_estado" type="button" class="btn btn-success btn-block">Nuevo Estado</a>
 			</div>
+			<div class="col-sm-4 col-md-6"></div>
+			<div class="col-sm-4 col-md-3">
+				<a href="<?php echo get_site_url(); ?>/wp-admin" type="button" class="btn btn-danger btn-block">Regresar</a>
+			</div>
+
 		</div>
 		<br>
 		<div class="container row">

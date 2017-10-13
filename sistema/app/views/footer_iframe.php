@@ -53,11 +53,9 @@
 																			
 
 	<!--para conversion a base64.encode y base64.decode -->
-	<script src="<?php echo base_url(); ?>js/base64/jquery.base64.js" type="text/javascript"></script>
-	<script src="<?php echo base_url(); ?>js/base64/jquery.base64.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>js/base64/jquery.base64_actualizado.js" type="text/javascript"></script>
+	<!--<script src="<?php echo base_url(); ?>js/base64/jquery.base64.min.js" type="text/javascript"></script> -->
 	
-
-    
 	
 	<!--datatables para el caso de salidas -->
 	

@@ -125,7 +125,8 @@ jQuery('#tabla_reportes_obras').dataTable( {
 	jQuery('#tabla_cat_obras').dataTable( {
 	
 	  "pagingType": "full_numbers",
-		
+		        //dom: "Bfrtip",
+
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
@@ -163,8 +164,10 @@ jQuery('#tabla_reportes_obras').dataTable( {
 			    	
 			    	{ 
 		                "render": function ( data, type, row ) {
+		                		//return '<td class="aaa2">'+row[1]+'</td>';
 		                		return row[1];
 		                },
+		                "className":'edicion',
 		                "targets": [0] //obra
 		            },
 
@@ -172,6 +175,7 @@ jQuery('#tabla_reportes_obras').dataTable( {
 		                "render": function ( data, type, row ) {
 		                		return row[2];
 		                },
+		                "className":'seleccion',
 		                "targets": [1] //estado
 		            },
 
@@ -180,6 +184,7 @@ jQuery('#tabla_reportes_obras').dataTable( {
 		                "render": function ( data, type, row ) {
 		                		return row[3];
 		                },
+		                "className":'edicion',
 		                "targets": [2] //lugar
 		            },
 
@@ -187,6 +192,7 @@ jQuery('#tabla_reportes_obras').dataTable( {
 		                "render": function ( data, type, row ) {
 		                		return row[4];
 		                },
+		                "className":'edicion',
 		                "targets": [3] //ano
 		            },
 
@@ -195,13 +201,17 @@ jQuery('#tabla_reportes_obras').dataTable( {
 		                "render": function ( data, type, row ) {
 		                		return row[5];
 		                },
+		                "className":'edicion',
 		                "targets": [4] //area=monto
 		            },
 
 			    	{ 
 		                "render": function ( data, type, row ) {
 		                		return row[6];
+
+		                  //{ data: "salary", render: $.fn.dataTable.render.number( ',', '.', 0, '$' ) }
 		                },
+		                "className":'seleccion',
 		                "targets": [5] //tipo
 		            },
 
@@ -211,7 +221,7 @@ jQuery('#tabla_reportes_obras').dataTable( {
 		                "render": function ( data, type, row ) {  //editar
 
 						texto='<td>';
-							texto+='<a href="editar_obra/'+jQuery.base64.encode(row[0])+'" type="button"'; 
+							texto+='<a href="editar_obra/'+jQuery.base64.encode(row[0])+'" num="'+jQuery.base64.encode(row[0])+'" type="button"'; 
 							texto+=' class="btn btn-warning btn-sm btn-block" >';
 								texto+=' <span class="glyphicon glyphicon-edit"></span>';
 							texto+=' </a>';
@@ -242,11 +252,140 @@ jQuery('#tabla_reportes_obras').dataTable( {
 		           
 		            
 		        ],
+
+		select: {
+            style:    'color:red;',
+            selector: 'td:first-child'
+        },
+        
 	});		
 
+//////////////////////////////////////////////////
+
+    jQuery('#tabla_cat_obras').on( 'click', 'tbody td:not(.entrada).edicion', function (e) {		
+
+      	 indice =jQuery(this).closest('tr > td').index(); 
+
+        num = jQuery(jQuery(this).parents()[0].cells[6]).find('a').attr('num'); 
+
+        jQuery(this).css('display','none');
+        jQuery(this).after( '<td class="entrada"><input autofocus indice="'+indice+'" num="'+num+'" id="myTextField" class="form-control input-sm" type="text" name="email" value="'+jQuery(e.target).text()+'" style="display: block;"></td>' );
+        //poner el focus
+        document.getElementById("myTextField").focus();
+
+    } );
+
+    jQuery('#tabla_cat_obras').on( 'click', 'tbody td:not(.entrada).seleccion', function (e) {	
+
+ 		 if( jQuery('#sel_dinamico').length )  {
+ 		 		return false;
+ 		 }
+
+      	 var celda = this;
+      	 indice =jQuery(this).closest('tr > td').index(); 
+      	 num = jQuery(jQuery(this).parents()[0].cells[6]).find('a').attr('num'); 
+    	 var info= jQuery(this).closest('tr > td').text();  	 //console.log(jQuery(e.target).text());
+      	 indice =jQuery(this).closest('tr > td').index(); 
+         num = jQuery(jQuery(this).parents()[0].cells[6]).find('a').attr('num') 
+ 			jQuery.ajax({
+                url : 'cargar_selector',
+                data:{
+                    indice:indice,
+                    num : num,
+                },
+                type : 'POST',
+                dataType : 'json',
+                success : function(data) {//console.log(data[indice]);
+	       			jQuery(celda).css('display','none');
+	       			jQuery(celda).after('<td class="combobox"><select indice="'+indice+'" num="'+num+'" id="sel_dinamico"></select></td>');	
+	                jQuery("#sel_dinamico").html(''); 
+	                //jQuery("#sel_dinamico").append('<option value="0" > </option>'); //+valor.nombre+
+
+	                jQuery.each(data[indice], function (dep, valor) {
+	                        	jQuery("#sel_dinamico").append('<option '+ ( (valor["nombre"]==info) ? 'selected' : '') +' value="'+ valor['id'] + '">' + valor['nombre'] + '</option>');         
+	                });
+	                document.getElementById("sel_dinamico").focus();
+                    return false;
+                },
+                error : function(jqXHR, status, error) {
+                },
+                complete : function(jqXHR, status) {
+                    
+                }
+            });   	
 
 
+    } );
 
+    jQuery('#tabla_cat_obras').on( 'focusout', 'tbody td.combobox #sel_dinamico', function (e) {		
+    	 
+
+    	 campo= jQuery('#sel_dinamico').attr('indice');
+    		   identificador= jQuery('#sel_dinamico').attr('num');
+    	valor= jQuery('#sel_dinamico option:selected').val();
+    	valor_mostrar= jQuery('#sel_dinamico option:selected').text();
+
+    	jQuery.ajax({
+			        url : 'actualizar_celda',
+			        data : { 
+			        	campo: campo,
+			        	valor: valor,
+			        	id: identificador,
+			        },
+			        type : 'POST',
+			        dataType : 'json',
+			        success : function(data) {	
+			        }
+		});	
+
+
+    	
+    	jQuery(this).parent().prev().text(valor_mostrar);
+    	jQuery(this).parent().prev().css('display','');
+    	jQuery(this).parent().remove();
+    	
+
+    });	
+
+
+    jQuery('#tabla_cat_obras').on( 'focusout', 'tbody td.entrada', function (e) {		
+    	
+
+    		   campo= jQuery('#myTextField').attr('indice');
+    		   valor= jQuery('#myTextField').val();
+    	identificador= jQuery('#myTextField').attr('num');
+
+		jQuery.ajax({
+			        url : 'actualizar_celda',
+			        data : { 
+			        	campo: campo,
+			        	valor: valor,
+			        	id: identificador,
+			        },
+			        type : 'POST',
+			        dataType : 'json',
+			        success : function(data) {	
+			        }
+		});	
+
+
+		if (campo==3) {  //caso de año que haga split de 4
+			valor = valor.substring(0, 4);
+		}
+
+		if (campo==4) {  //caso de año que haga split de 4
+			valor = parseFloat(valor);
+			valor= (!valor) ? "0.00" : valor;
+		}
+
+
+    	jQuery(this).prev().text(valor);
+    	jQuery(this).prev().css('display','');
+    	jQuery(this).remove();
+
+    });		
+
+//////////////////////////////////////////////////
 
 	jQuery('#tabla_cat_estados').dataTable( {
 	

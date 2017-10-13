@@ -3283,9 +3283,6 @@ jQuery('#tabla_reporte').dataTable( {
                                     } else {
                                         jQuery("#"+dep).append('<option '+ ( (parseInt(value.id)==parseInt(value.activo)) ? 'selected' : '') +' value="' + value.id + '" style="background-color:#'+hexadecimal_color+' !important;" >' + value.nombre + '</option>');      
                                     }
-                                    
-
-                                    
                                 });
                         });
 

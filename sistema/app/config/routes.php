@@ -92,6 +92,11 @@ $route['procesando_reportes_obras']    = 'main/procesando_reportes_obras';
 
 
 
+//actualizar_celda
+$route['actualizar_celda']     = 'main/actualizar_celda';
+$route['cargar_selector']     = 'main/cargar_selector';
+
+
 
 
 /*
